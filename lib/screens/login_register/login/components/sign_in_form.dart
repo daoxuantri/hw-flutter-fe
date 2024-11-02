@@ -1,10 +1,14 @@
-
-
+ 
 import 'package:flutter/material.dart';
-import 'package:myproject/constants.dart';
-import 'package:myproject/login_register/login/components/default_button.dart';
-import 'package:myproject/security_user/keyboard.dart';
-import 'package:myproject/size_config.dart';
+import 'package:myproject/api/authencation.dart';
+import 'package:myproject/components_buttons/bottom_navbar_home.dart';
+import 'package:myproject/screens/forget_password/forget_password.dart';
+import 'package:myproject/screens/login_register/login/components/default_button.dart';
+
+import '../../../../constants.dart';
+import '../../../../security_user/keyboard.dart';
+import '../../../../size_config.dart';
+import '../../../../components_buttons/snackbar.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -15,7 +19,7 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
-  // final ApiServiceAuth authentication = ApiServiceAuth();
+  final ApiServiceAuth authentication = ApiServiceAuth();
 
   String? email;
   String? password;
@@ -36,24 +40,24 @@ class _SignInFormState extends State<SignInForm> {
             SizedBox(height: getProportionateScreenHeight(13)),
             PasswordFormField(),
             SizedBox(height: getProportionateScreenHeight(10)),
-            // Row(
-            //     mainAxisAlignment: MainAxisAlignment.end,
-            //     children: [
-            //     GestureDetector(
-            //         onTap: () => (
-            //           Navigator.pushNamed(context, ForgetPassWordScreen.routeName)
-            //         ),
-            //         child: Text(
-            //           "Quên mật khẩu?",
-            //           style: TextStyle(
-            //             fontSize: getProportionateScreenWidth(15),
-            //             color: kLabelColor,
-            //           ),
-            //         ),
-            //       ),
-            //     ],
+            Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                GestureDetector(
+                    onTap: () => (
+                      Navigator.pushNamed(context, ForgetPassWordScreen.routeName)
+                    ),
+                    child: Text(
+                      "Quên mật khẩu?",
+                      style: TextStyle(
+                        fontSize: getProportionateScreenWidth(15),
+                        color: kLabelColor,
+                      ),
+                    ),
+                  ),
+                ],
                 
-            // ),
+            ),
             SizedBox(height: getProportionateScreenHeight(25)),
             DefaultButton(
               text: 'Đăng nhập',
@@ -61,20 +65,20 @@ class _SignInFormState extends State<SignInForm> {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
                   KeyboardUtil.hideKeyboard(context);
-                  // try {
-                  //       await authentication.login(email!, password!);
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBarLoginSuccess('Đăng nhập thành công'),);
-                  //         Navigator.pushReplacementNamed(context, NavigatorBottomBarHome.routeName);
+                  try {
+                        await authentication.login(email!, password!);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBarLoginSuccess('Đăng nhập thành công'),);
+                          // Navigator.pushReplacementNamed(context, NavigatorBottomBarHome.routeName);
 
                       
                     
-                  // } catch (e) {
+                  } catch (e) {
                     
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     SnackBarLoginFail(e.toString().replaceFirst('Exception: ', '')),
-                  //   );
-                  // }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBarLoginFail(e.toString().replaceFirst('Exception: ', '')),
+                    );
+                  }
                 }
               },
             ),

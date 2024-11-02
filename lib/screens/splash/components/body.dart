@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:myproject/api/authencation.dart';
 import 'package:myproject/components_buttons/colors.dart';
-import 'package:myproject/login_register/login/login_screen.dart';
+import 'package:myproject/screens/login_register/login/login_screen.dart';
+import 'package:myproject/security_user/secure_storage_user.dart';
 import 'package:myproject/size_config.dart';
 
 class Body extends StatefulWidget {
@@ -24,33 +26,31 @@ class _BodyState extends State<Body> {
   }
 
   Future<void> _initialize() async {
-  // await getdata();
+  await getdata();
   startTimer();
 }
 
-  // Future<void> getdata() async{
-  //   email = await UserSecurityStorage.getEmail();
-  //   password = await UserSecurityStorage.getPassword();
-  // }
+  Future<void> getdata() async{
+    email = await UserSecurityStorage.getEmail();
+    password = await UserSecurityStorage.getPassword();
+  }
 
   Timer ?_timer ; 
   void startTimer() {
-  _timer = Timer.periodic(const Duration(seconds: 2), (timer) async {
-    Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+  _timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
     try {
       if (!mounted) return; 
 
-      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-
-      // if (email != null && password != null) {
-      //   await ApiServiceAuth().login(email!, password!);
-      //   if (!mounted) return; 
-      //   Navigator.pushReplacementNamed(
-      //       context, NavigatorBottomBarHome.routeName);
-      // } else {
-      //   if (!mounted) return;
-      //   Navigator.pushReplacementNamed(context, LoginScreen.routeName);
-      // }
+      if (email != null && password != null) {
+        // await ApiServiceAuth().login(email!, password!);
+        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+        if (!mounted) return; 
+        // Navigator.pushReplacementNamed(
+        //     context, NavigatorBottomBarHome.routeName);
+      } else {
+        if (!mounted) return;
+        Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+      }
     } catch (e) {
       if (mounted) { 
         Navigator.pushReplacementNamed(context, LoginScreen.routeName);

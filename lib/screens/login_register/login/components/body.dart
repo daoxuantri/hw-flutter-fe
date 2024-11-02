@@ -1,7 +1,9 @@
- 
 import 'package:flutter/material.dart';
-import 'package:myproject/login_register/login/components/sign_in_form.dart';
-import 'package:myproject/size_config.dart'; 
+import 'package:myproject/screens/login_register/login/components/sign_in_form.dart';
+import 'package:myproject/screens/login_register/register/sign_up_screen.dart';
+import 'package:myproject/size_config.dart';
+
+import '../../../../constants.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -105,51 +107,51 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: getProportionateScreenHeight(25),
                 ),
-                // Column(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Text(
-                //           "Chưa có tài khoản? ",
-                //           style: TextStyle(
-                //             fontSize: getProportionateScreenWidth(15),
-                //             color: Colors.black,
-                //           ),
-                //         ),
-                //         GestureDetector(
-                //           onTap: () => Navigator.pushReplacementNamed(
-                //           context, SignUpScreen.routeName),
-                //           child: Text(
-                //             "Đăng ký ngay",
-                //             style: TextStyle(
-                //               fontSize: getProportionateScreenWidth(18),
-                //               color: kPrimaryColor,
-                //             ),
-                //           ),
-                //         ),
-                //       ],
-                //     ),
-                //     SizedBox(
-                //   height: getProportionateScreenHeight(15), ),
-                //     GestureDetector(
-                //       onTap: () => {},
-                //       child: Text(
-                //         "Xem chính sách ưu đãi member",
-                //         style: TextStyle(
-                //           fontSize: getProportionateScreenWidth(15),
-                //           color: Colors.red,
-                //           fontWeight: FontWeight.w500,
-                //           decoration: TextDecoration.underline, 
-                //           decorationColor: Colors.red,
-                //           decorationThickness: 2.0,
-                //         ),
-                //       ),
-                //     ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Chưa có tài khoản? ",
+                          style: TextStyle(
+                            fontSize: getProportionateScreenWidth(15),
+                            color: Colors.black,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.pushReplacementNamed(
+                          context, SignUpScreen.routeName),
+                          child: Text(
+                            "Đăng ký ngay",
+                            style: TextStyle(
+                              fontSize: getProportionateScreenWidth(18),
+                              color: kPrimaryColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                  height: getProportionateScreenHeight(15), ),
+                    GestureDetector(
+                      onTap: () => {},
+                      child: Text(
+                        "Xem chính sách ưu đãi member",
+                        style: TextStyle(
+                          fontSize: getProportionateScreenWidth(15),
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline, 
+                          decorationColor: Colors.red,
+                          decorationThickness: 2.0,
+                        ),
+                      ),
+                    ),
 
-                //   ],
-                // ),
+                  ],
+                ),
               ],
             ),
           ),

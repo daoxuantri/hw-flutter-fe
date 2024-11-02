@@ -1,6 +1,6 @@
  
 import 'package:flutter/material.dart';
-import 'package:myproject/login_register/login/components/body.dart';
+import 'package:myproject/screens/login_register/login/components/body.dart';
 import 'package:myproject/size_config.dart';
 
 
