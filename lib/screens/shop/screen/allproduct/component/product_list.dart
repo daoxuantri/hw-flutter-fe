@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myproject/model/products/product_data_model.dart'; 
-import 'package:myproject/screens/home/bloc/home_bloc.dart';
 import 'package:myproject/screens/home/components/product_card.dart';
 import 'package:myproject/screens/shop/screen/allproduct/bloc/product_bloc.dart';
 
@@ -28,11 +27,7 @@ class ProductList extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                // productBloc.add(
-                //   ProductProductClickedEvent(
-                //     productId: products[index].sId.toString(),
-                //   ),
-                // );
+                 productBloc.add(ProductidClickEvent(productId: products[index].sId.toString()));
               },
               child: ProductCard(
                 images: (products[index].images != null && products[index].images!.isNotEmpty)

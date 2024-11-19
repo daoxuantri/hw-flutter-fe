@@ -8,7 +8,9 @@ import 'package:myproject/screens/home/home_screen.dart';
 import 'package:myproject/screens/login_register/login/login_screen.dart';
 import 'package:myproject/screens/login_register/register/sign_up_screen.dart';
 import 'package:myproject/screens/product/product_screen.dart';
+import 'package:myproject/screens/profile/profile_screen.dart';
 import 'package:myproject/screens/shop/screen/allproduct/allproduct_screen.dart';
+import 'package:myproject/screens/shop/screen/allproduct/component/product_details.dart';
 import 'package:myproject/screens/shop/screen/edit_upload/edit_upload_product_form.dart';
 import 'package:myproject/screens/shop/screen/view_order/view_oder_screen.dart'; 
 import 'package:myproject/screens/shop/shop_screen.dart';
@@ -42,6 +44,9 @@ final Map<String , WidgetBuilder> routes ={
   EditOrUploadProductScreen.routeName : (context) => const EditOrUploadProductScreen(),
   ViewOrderScreen.routeName: (context) => const ViewOrderScreen(),
   AllProductScreen.routeName : (context) => const AllProductScreen(),
+
+  ProductDetails.routeName : (context) => const ProductDetails(),
+  ProfileScreen.routeName : (context) => const ProfileScreen(),
   // OrdersScreenFree.routeName : (context) => const EditOrUploadProductScreen(),
   // SearchScreen.routeName : (context) => const SearchScreen(),
   

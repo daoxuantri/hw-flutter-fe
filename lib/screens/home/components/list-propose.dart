@@ -29,7 +29,7 @@ class ListPropose extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 15),  
                 child: GestureDetector(
                   onTap: () {
-                    homeBloc.add(HomeProductClickedEvent(productId: ratingProducts[index].sId.toString()));
+                    // homeBloc.add(HomeProductClickedEvent(productId: ratingProducts[index].sId.toString()));
                   },
                   child: ProductCardPropose(
                     name: ratingProducts[index].name,

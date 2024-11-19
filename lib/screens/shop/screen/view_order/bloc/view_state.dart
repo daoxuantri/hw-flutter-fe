@@ -19,7 +19,7 @@ class ViewLoadedSuccessState extends ViewState {
   });
 }
 
-class ViewUploadedSuccessState extends ViewActionState {}
+
 
 class ViewErrorState extends ViewState {
   final String errorMessage;
@@ -29,12 +29,24 @@ class ViewErrorState extends ViewState {
   });
 }
 
+
+
+class ViewUploadedSuccessState extends ViewActionState {}
+
 class ViewErrorScreenToLoginState extends ViewActionState {}
 
 class ViewProductClickedState extends ViewActionState {
   final String productId;
-
   ViewProductClickedState({
     required this.productId,
   });
+}
+
+//cap nhat trang thai giao hang
+class ViewUpdateStatusDeliveryState extends ViewActionState {
+  final String message;
+
+    ViewUpdateStatusDeliveryState({
+      required this.message
+    });
 }

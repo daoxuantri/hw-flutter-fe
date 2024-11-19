@@ -22,3 +22,15 @@ class ViewProductClickedEvent extends ViewEvent {
     required this.image,
   });
 }
+
+
+class ViewUpdateStatusDeliveryEvent extends ViewEvent {
+  final String orderId;
+  final bool statusDelivery;
+  
+  const ViewUpdateStatusDeliveryEvent({
+    required this.orderId,
+    required this.statusDelivery
+  });
+}
+

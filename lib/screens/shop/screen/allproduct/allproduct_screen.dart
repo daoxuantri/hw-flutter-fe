@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myproject/screens/home/components/text_title.dart';
 import 'package:myproject/screens/shop/screen/allproduct/bloc/product_bloc.dart';
+import 'package:myproject/screens/shop/screen/allproduct/component/product_details.dart';
 import 'package:myproject/screens/shop/screen/allproduct/component/product_list.dart';
 import 'package:myproject/screens/shop/widget/title_text.dart';
 import 'package:myproject/size_config.dart';
@@ -34,9 +35,10 @@ class _AllProductScreenState extends State<AllProductScreen> {
       listenWhen: (previous, current) => current is ProductActionState,
       buildWhen: (previous, current) => current is! ProductActionState,
       listener: (context, state) {
-        // if (state is ProductErrorScreenToLoginState) {
-        //   Navigator.pushNamed(context, LoginScreen.routeName);
-        // }
+        if (state is ProductClickedState) {
+          Navigator.pushNamed(context, ProductDetails.routeName,
+                              arguments: state.productId);
+        }
         // if (state is ProductProductClickedState) {
         //   Navigator.pushNamed(context, ProductScreen.routeName,
         //       arguments: state.productId);

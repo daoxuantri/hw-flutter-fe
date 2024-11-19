@@ -18,6 +18,15 @@ class ProductLoadedSuccessState extends ProductState {
   });
 }
 
+//get product by id
+class ProductDetailsSuccessState extends ProductState {
+  final ProductDataModels product;
+
+  ProductDetailsSuccessState({
+    required this.product,
+  });
+} 
+
 class ProductUploadedSuccessState extends ProductActionState {}
 
 class ProductErrorState extends ProductState {
@@ -37,3 +46,5 @@ class ProductClickedState extends ProductActionState {
     required this.productId,
   });
 }
+
+

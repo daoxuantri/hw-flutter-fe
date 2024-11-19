@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myproject/components_buttons/colors.dart';
 import 'package:myproject/screens/home/home_screen.dart';
+import 'package:myproject/screens/profile/profile_screen.dart';
 import 'package:myproject/screens/shop/shop_screen.dart';
 import 'package:myproject/size_config.dart';
 
@@ -23,7 +24,8 @@ class _NavigatorBottomBarState extends State<NavigatorBottomBarHome> {
   ];
   final screens =[
       const HomeScreen(),
-      const DarshBoard()
+      const DarshBoard(),
+      const ProfileScreen(),
   ];
 
   @override

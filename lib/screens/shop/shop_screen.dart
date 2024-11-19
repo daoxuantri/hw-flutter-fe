@@ -23,7 +23,7 @@ class _DarshBoardState extends State<DarshBoard> {
     SizeConfig().init(context);
     return Scaffold(
         appBar: AppBar(
-          title: const TitlesTextWidget(label: "Trang chủ"), 
+          title: const TitlesTextWidget(label: "Quản lý"), 
         ),
         body: SingleChildScrollView(
           child: Column(

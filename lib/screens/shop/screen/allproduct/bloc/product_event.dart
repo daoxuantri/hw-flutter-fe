@@ -22,3 +22,17 @@ class ProductClickedEvent extends ProductEvent {
     required this.image,
   });
 }
+
+class ProductidClickEvent extends ProductEvent {
+  final String productId;
+  const ProductidClickEvent({
+    required this.productId
+  });
+}
+
+class ProductDetailsClickEvent extends ProductEvent {
+  final String productId;
+  const ProductDetailsClickEvent({
+    required this.productId
+  });
+}

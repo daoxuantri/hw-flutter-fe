@@ -31,7 +31,7 @@ class EditBloc extends Bloc<EditEvent, EditState> {
   FutureOr<void> editProductClickedEvent(
   EditProductClickedEvent event,  Emitter<EditState> emit, ) async {
   try {
-    var uri = Uri.parse("http://192.168.2.183:4000/products/createproduct");
+    var uri = Uri.parse("http://192.168.1.29:4000/products/createproduct");
     // Gửi yêu cầu tới server
     print('Đã qua giai đoạn này');
     final request = http.MultipartRequest("POST", uri)

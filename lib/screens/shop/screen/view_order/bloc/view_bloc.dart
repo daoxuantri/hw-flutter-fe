@@ -13,6 +13,7 @@ class ViewBloc extends Bloc<ViewEvent, ViewState> {
     on<ViewInitialEvent>(viewInitialEvent);
     on<ViewErrorScreenToLoginEvent>(viewErrorScreenToLoginEvent);
     on<ViewProductClickedEvent>(viewProductClickedEvent);
+    on<ViewUpdateStatusDeliveryEvent>(viewUpdateStatusDeliveryEvent);
   }
 
   Future<FutureOr<void>> viewInitialEvent(
@@ -36,6 +37,18 @@ class ViewBloc extends Bloc<ViewEvent, ViewState> {
       ViewProductClickedEvent event, Emitter<ViewState> emit) async {
     try {
       
+    } catch (e) {
+      emit(ViewErrorState(errorMessage: e.toString()));
+    }
+  }
+
+
+  Future<FutureOr<void>> viewUpdateStatusDeliveryEvent(
+      ViewUpdateStatusDeliveryEvent event, Emitter<ViewState> emit) async {
+    try {
+      final apiService = ApiServiceOrders();
+      final responeMessage = await apiService.setStatusDelivery(event.orderId, event.statusDelivery);
+      emit(ViewUpdateStatusDeliveryState(message: responeMessage));
     } catch (e) {
       emit(ViewErrorState(errorMessage: e.toString()));
     }

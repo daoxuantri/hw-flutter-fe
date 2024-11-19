@@ -9,7 +9,7 @@ import 'package:myproject/model/orders/respone_list_all_order.dart';
   
 
 class ApiServiceOrders {
-  static const String baseUrl = 'http://192.168.2.183:4000';
+  static const String baseUrl = 'http://192.168.1.29:4000';
 
   Future<List<Data>> getAllOrder() async {
 
@@ -26,6 +26,35 @@ class ApiServiceOrders {
       if (responseData['success'] == true) {
         var response = ResponeListAllOrder.fromJson(responseData);
         return response.data!;
+      } else {
+        throw Exception(responseData['message']);
+      }
+    } else if (response.statusCode == 401) {
+      throw Exception('Đang gặp lỗi');
+    } else {
+      throw Exception('Gọi api thất bại');
+    }
+  }
+
+  Future<String> setStatusDelivery(String orderId, bool delivery) async {
+
+    var url = Uri.parse('$baseUrl/orders/setdelivery');
+
+    var headers = {
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    var body = json.encode({
+      'orderId': orderId,
+      'delivery': delivery
+    });
+
+    var response = await http.put(url, headers: headers, body: body);
+    var responseData = json.decode(response.body);
+    if (response.statusCode == 200) {
+      if (responseData['success'] == true) { 
+        return responseData['message'];
       } else {
         throw Exception(responseData['message']);
       }

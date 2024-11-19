@@ -27,11 +27,11 @@ class ProductList extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                homeBloc.add(
-                  HomeProductClickedEvent(
-                    productId: products[index].sId.toString(),
-                  ),
-                );
+                // homeBloc.add(
+                //   HomeProductClickedEvent(
+                //     productId: products[index].sId.toString(),
+                //   ),
+                // );
               },
               child: ProductCard(
                 images: (products[index].images != null && products[index].images!.isNotEmpty)

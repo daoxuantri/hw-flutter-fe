@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myproject/components_buttons/snackbar.dart';
 import 'package:myproject/screens/shop/screen/view_order/bloc/view_bloc.dart';
 import 'package:myproject/screens/shop/screen/view_order/component/order_list.dart';
 import 'package:myproject/screens/shop/widget/title_text.dart';
@@ -30,9 +31,13 @@ class _ViewOrderScreenState extends State<ViewOrderScreen> {
       listenWhen: (previous, current) => current is ViewActionState,
       buildWhen: (previous, current) => current is! ViewActionState,
       listener: (context, state) {
-        // if (state is ProductErrorScreenToLoginState) {
-        //   Navigator.pushNamed(context, LoginScreen.routeName);
-        // }
+        if (state is ViewUpdateStatusDeliveryState) {
+          final String messageString = state.message;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBarLoginSuccess('$messageString'),
+          );
+          viewBloc.add(ViewInitialEvent());
+        }
         // if (state is ProductProductClickedState) {
         //   Navigator.pushNamed(context, ProductScreen.routeName,
         //       arguments: state.productId);
@@ -61,7 +66,7 @@ class _ViewOrderScreenState extends State<ViewOrderScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0,10,10,10),
-                      child: OrderList(listorders: successState.listorder ),
+                      child: OrderList(listorders: successState.listorder, viewBloc : viewBloc ),
                     ),
 
                    

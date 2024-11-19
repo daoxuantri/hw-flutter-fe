@@ -49,6 +49,7 @@
 //   }
 // }
 
+ 
 
 import 'package:flutter/material.dart';
 import 'package:myproject/model/orders/data_order_model.dart';
@@ -56,10 +57,11 @@ import 'package:myproject/screens/shop/screen/view_order/bloc/view_bloc.dart';
 import 'package:myproject/screens/shop/screen/view_order/component/orders_card.dart'; 
 class OrderList extends StatelessWidget {
   final List<Data>? listorders; 
+  final ViewBloc viewBloc ;
 
   const OrderList({
     super.key,
-    required this.listorders,
+    required this.listorders, required this.viewBloc,
   });
 
   @override
@@ -83,9 +85,51 @@ class OrderList extends StatelessWidget {
           address: order.address ?? 'Không rõ',
           phone: order.phone ?? 'Không rõ',
           delivery: order.delivery ?? false,
+          voidCallback: ()=> _showChangeDeliveryDialog(context, order),
+        );
+      },
+    );
+  }
+
+
+
+  void _showChangeDeliveryDialog(BuildContext context, Data order) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Cập nhật trạng thái giao hàng"),
+          content: const Text("Bạn muốn cập nhật trạng thái đơn hàng này?"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context), // Đóng dialog
+              child: const Text("Hủy"),
+            ),
+            TextButton(
+              onPressed: () {
+                // Trạng thái "Đã giao"
+                viewBloc.add(ViewUpdateStatusDeliveryEvent(
+                  orderId: order.sId!,
+                  statusDelivery: true,
+                ));
+                Navigator.pop(context); // Đóng dialog
+              },
+              child: const Text("Đã giao"),
+            ),
+            TextButton(
+              onPressed: () {
+                // Trạng thái "Đang trong quá trình vận chuyển"
+                viewBloc.add(ViewUpdateStatusDeliveryEvent(
+                  orderId: order.sId!,
+                  statusDelivery: false,
+                ));
+                Navigator.pop(context); // Đóng dialog
+              },
+              child: const Text("Đang giao"),
+            ),
+          ],
         );
       },
     );
   }
 }
-

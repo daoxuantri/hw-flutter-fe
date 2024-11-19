@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiServicesAccount {
-  final String _baseUrl = "http://192.168.2.183:4000";
+  final String _baseUrl = "http://192.168.1.29:4000";
 
   Future<void> sendOtp(String email) async {
     var url = Uri.parse("$_baseUrl/users/email_verification1/$email");
