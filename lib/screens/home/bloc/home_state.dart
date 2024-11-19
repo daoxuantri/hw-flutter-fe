@@ -12,9 +12,12 @@ class HomeInitial extends HomeState {}
 class HomeLoadingState extends HomeState {}
 
 class HomeLoadedSuccessState extends HomeState {
-  List<ProductDataModel> productsPropose;
-  HomeLoadedSuccessState({
-    required this.productsPropose,
+  
+  List<ProductDataModel> productsPropose; 
+  List<ProductDataModel> ratingPropose;
+  HomeLoadedSuccessState({ 
+    required this.productsPropose, 
+    required this.ratingPropose,
   });
 }
 

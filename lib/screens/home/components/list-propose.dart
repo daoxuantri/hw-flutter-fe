@@ -1,15 +1,14 @@
- 
 import 'package:flutter/material.dart';
-import 'package:myproject/model/products/product_data_model.dart';
+import 'package:myproject/model/home/products.dart';
 import '../bloc/home_bloc.dart';
-// import 'flower_card_propose.dart';
+import 'product_card_propose.dart';
 
 class ListPropose extends StatelessWidget {
-  final List<ProductDataModel> products;
+  final List<ProductDataModel> ratingProducts;
   final HomeBloc homeBloc;
 
   const ListPropose(
-      {super.key, required this.products, required this.homeBloc});
+      {super.key, required this.ratingProducts, required this.homeBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -17,29 +16,32 @@ class ListPropose extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: 280,
+          height: 300,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            itemCount: products.length,
+            itemCount: ratingProducts.length,
             itemBuilder: (context, index) {
               int currentIndex = index;
               return Container(
                 margin: EdgeInsets.only(
-                    right: currentIndex == products.length - 1 ? 20 : 0),
-                padding: const EdgeInsets.only(bottom: 20),
+                    right: currentIndex == ratingProducts.length - 1 ? 20 : 0),
+                padding: const EdgeInsets.only(bottom: 15),  
                 child: GestureDetector(
-                  // onTap: () {
-                  //   homeBloc.add(HomeProductClickedEvent(productId: products[index].id.toString()));
-                  // },
-                  // child: FlowerCardPropose(
-                  //   name: products[index].name,
-                  // image: (products[index].images != null && products[index].images!.isNotEmpty) 
-                  //     ? products[index].images![0] // Kiểm tra nếu mảng images có ít nhất 1 phần tử
-                  //     : 'assets/images/notfoundimages.jpg', 
-                  // id: products[index].sId ?? '', 
-                  // homeBloc: homeBloc,
-                  // ),
+                  onTap: () {
+                    homeBloc.add(HomeProductClickedEvent(productId: ratingProducts[index].sId.toString()));
+                  },
+                  child: ProductCardPropose(
+                    name: ratingProducts[index].name,
+                    image: (ratingProducts[index].images != null && ratingProducts[index].images!.isNotEmpty) 
+                      ? ratingProducts[index].images! 
+                      : 'assets/images/notfoundimages.jpg', 
+                    id: ratingProducts[index].sId ?? '', 
+                    homeBloc: homeBloc,
+                    price : ratingProducts[index].price,
+                    sold: ratingProducts[index].sold
+                    
+                  ),
                 ),
               );
             },

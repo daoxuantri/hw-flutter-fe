@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myproject/components_buttons/colors.dart';
 import 'package:myproject/screens/home/home_screen.dart';
+import 'package:myproject/screens/shop/shop_screen.dart';
 import 'package:myproject/size_config.dart';
 
 class NavigatorBottomBarHome extends StatefulWidget {
@@ -18,12 +19,11 @@ class _NavigatorBottomBarState extends State<NavigatorBottomBarHome> {
   List<String> listAssetsIcons = [
     "IC_Home.svg",
     "IC_Shop.svg",
-    "IC_Bag.svg",
-    "IC_Favorite.svg",
     "IC_Profile.svg",
   ];
   final screens =[
-      const HomeScreen()
+      const HomeScreen(),
+      const DarshBoard()
   ];
 
   @override
@@ -94,8 +94,7 @@ class _NavigatorBottomBarState extends State<NavigatorBottomBarHome> {
                     ),
                   )
                 ],
-              ),
-              // SizedBox(height: getProportionateScreenWidth(.03)),
+              ), 
             ),
           ),
         ),

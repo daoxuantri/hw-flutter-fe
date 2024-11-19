@@ -69,7 +69,7 @@ class _SignInFormState extends State<SignInForm> {
                         await authentication.login(email!, password!);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBarLoginSuccess('Đăng nhập thành công'),);
-                          // Navigator.pushReplacementNamed(context, NavigatorBottomBarHome.routeName);
+                          Navigator.pushReplacementNamed(context, NavigatorBottomBarHome.routeName);
 
                       
                     

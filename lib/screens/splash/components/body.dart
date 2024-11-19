@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:myproject/api/authencation.dart';
+import 'package:myproject/components_buttons/bottom_navbar_home.dart';
 import 'package:myproject/components_buttons/colors.dart';
 import 'package:myproject/screens/login_register/login/login_screen.dart';
 import 'package:myproject/security_user/secure_storage_user.dart';
@@ -42,11 +43,11 @@ class _BodyState extends State<Body> {
       if (!mounted) return; 
 
       if (email != null && password != null) {
-        // await ApiServiceAuth().login(email!, password!);
+        await ApiServiceAuth().login(email!, password!);
         Navigator.pushReplacementNamed(context, LoginScreen.routeName);
         if (!mounted) return; 
-        // Navigator.pushReplacementNamed(
-        //     context, NavigatorBottomBarHome.routeName);
+        Navigator.pushReplacementNamed(
+            context, NavigatorBottomBarHome.routeName);
       } else {
         if (!mounted) return;
         Navigator.pushReplacementNamed(context, LoginScreen.routeName);

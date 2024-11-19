@@ -1,5 +1,5 @@
  
-import 'package:myproject/model/products/product_data_model.dart';
+import 'package:myproject/model/home/products.dart';
 
 class getAllProductResponse {
   List<ProductDataModel>? data;

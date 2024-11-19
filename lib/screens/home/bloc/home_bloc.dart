@@ -1,8 +1,10 @@
-import 'dart:async'; 
-import 'package:bloc/bloc.dart'; 
+import 'dart:async';
+
+import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:myproject/api/products.dart';
-import 'package:myproject/model/products/product_data_model.dart';
+import 'package:myproject/model/home/data_respone_home.dart';
+import 'package:myproject/model/home/products.dart';
 
 
 part 'home_event.dart';
@@ -20,9 +22,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       HomeInitialEvent event, Emitter<HomeState> emit) async {
     emit(HomeLoadingState());
     try {
-      List<ProductDataModel> products = await ApiServiceProducts().getAllProduct();
-        List<ProductDataModel>? dataPropose = products;
-        emit(HomeLoadedSuccessState(productsPropose: dataPropose!));
+      // get home
+      Data dataHomes = await ApiServiceProducts().getAllProduct();
+
+      //get children (home) -> all product
+      List<ProductDataModel>? products = dataHomes.products;
+
+      //get children (home) -> rating
+      List<ProductDataModel>? ratingProducts = dataHomes.ratingProducts;
+
+
+
+      emit(HomeLoadedSuccessState(productsPropose: products! , ratingPropose : ratingProducts!));
     } catch (e) {
       String failToken = e.toString();
       if (failToken.startsWith('Exception: ')) {
@@ -39,7 +50,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> homeProductClickedEvent(
       HomeProductClickedEvent event, Emitter<HomeState> emit) {
-    // emit(HomeProductClickedState(productId: event.productId));
+    emit(HomeProductClickedState(productId: event.productId));
   }
 
 }
